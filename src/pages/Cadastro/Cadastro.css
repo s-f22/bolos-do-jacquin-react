@@ -1,5 +1,5 @@
 /* MAIN CADASTRO */
-.visualmente_oculto {
+.acessivel {
     position: absolute;
     /* Retira o elemento do fluxo visual sem afetar leitores de tela */
     width: 1px;

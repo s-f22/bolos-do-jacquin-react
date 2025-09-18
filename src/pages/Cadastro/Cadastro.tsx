@@ -7,7 +7,7 @@ export default function Cadastro() {
     <>
       <Header />
       <main className="main_cadastro">
-        <h1 className="visualmente_oculto">Tela de cadastro e listagem de produtos</h1>
+        <h1 className="acessivel">Tela de cadastro e listagem de produtos</h1>
         <form>
           <h2>Cadastro</h2>
           <hr />
