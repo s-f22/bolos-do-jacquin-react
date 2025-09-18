@@ -1,0 +1,11 @@
+/* RODAPE */
+footer {
+    width: 100%;
+    height: var(--alturaRodape);
+    background-color: var(--corPrincipal);
+    font-family: var(--fontLogo);
+    font-size: 14px;
+
+    line-height: var(--alturaRodape);
+    text-align: center;
+}
