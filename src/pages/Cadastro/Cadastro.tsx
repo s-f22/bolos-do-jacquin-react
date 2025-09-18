@@ -1,6 +1,11 @@
+import Header from "../../components/Header/Header";
+import './Cadastro.css'
 
 export default function Cadastro() {
   return (
-    <h1>Cadastro</h1>
+    <>
+      <Header />
+      <h1>Cadastro</h1>
+    </>
   )
 }

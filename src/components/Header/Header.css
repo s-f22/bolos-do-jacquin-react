@@ -1,0 +1,45 @@
+/* HEADER */
+header {
+    background-color: var(--corPrincipal);
+    height: 80px;
+    display: flex;
+}
+.container {
+    width: 90%;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.container_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icone_home {
+    width: 50px;
+}
+
+.logo_header {
+    height: 60px;
+}
+
+.busca {
+    position: relative;
+    width: 50%;
+    max-width: 500px;
+}
+
+.busca svg {
+    width: 26px;
+    position: absolute;
+    top: 5px;
+    left: 10px;
+}
+
+header input {
+    height: 36px;
+    width: 100%;
+    border-radius: 10px;
+    padding-left: 40px;
+}
