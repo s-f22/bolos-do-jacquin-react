@@ -2,6 +2,7 @@ import Header from '../../components/Header/Header'
 import './Produtos.css'
 import chocolateBelga from '../../assets/imgs/choc-belga.png'
 import whatsIcon from '../../assets/whatsapp.png';
+import Footer from '../../components/Footer/Footer';
 
 export default function Produtos() {
   return (
@@ -61,6 +62,7 @@ export default function Produtos() {
           <img src={whatsIcon} alt="icone do whatsapp" />
         </a>
       </main>
+      <Footer />
     </>
   )
 }
