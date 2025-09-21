@@ -30,7 +30,7 @@
     gap: 10%;
 }
 
-.card {
+.homeCard {
     margin: 50px 0;
     width: 260px;
     height: 360px;
@@ -70,7 +70,7 @@
     background: linear-gradient(180deg,rgba(65, 0, 56, 1) 0%, rgba(117, 0, 102, 1) 100%);
 }
 
-.card svg:first-child {
+.homeCard svg:first-child {
     width: 26px;
     align-self: flex-end;
 }

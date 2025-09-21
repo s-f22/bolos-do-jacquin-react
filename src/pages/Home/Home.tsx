@@ -36,7 +36,7 @@ export default function Home() {
         <section className="secao_cards">
           <h1 className="acessivel">Pagina inicial</h1>
 
-          <a className="card card_cacau" href="">
+          <a className="homeCard card_cacau" href="">
             <svg xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 448 512">
               <path fill="currentColor"
@@ -52,7 +52,7 @@ export default function Home() {
             <h2>Chocolate</h2>
           </a>
 
-          <a className="card card_cerimonias" href="">
+          <a className="homeCard card_cerimonias" href="">
             <svg xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 448 512">
               <path fill="currentColor"
@@ -68,7 +68,7 @@ export default function Home() {
             <h2>Cerimônias</h2>
           </a>
 
-          <a className="card card_morango" href="">
+          <a className="homeCard card_morango" href="">
             <svg xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 448 512">
               <path fill="currentColor"
@@ -84,7 +84,7 @@ export default function Home() {
             <h2>Morango</h2>
           </a>
 
-          <a className="card card_natal" href="">
+          <a className="homeCard card_natal" href="">
             <svg xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 448 512">
               <path fill="currentColor"
@@ -100,7 +100,7 @@ export default function Home() {
             <h2>Natal</h2>
           </a>
 
-          <a className="card card_coco" href="">
+          <a className="homeCard card_coco" href="">
             <svg xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 448 512">
               <path fill="currentColor"
@@ -116,7 +116,7 @@ export default function Home() {
             <h2>Coco</h2>
           </a>
 
-          <a className="card card_destaques" href="">
+          <a className="homeCard card_destaques" href="">
             <svg xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 448 512">
               <path fill="currentColor"
