@@ -3,8 +3,33 @@ import './Produtos.css'
 import chocolateBelga from '../../assets/imgs/choc-belga.png'
 import whatsIcon from '../../assets/whatsapp.png';
 import Footer from '../../components/Footer/Footer';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 export default function Produtos() {
+
+
+const getData = async () => {
+  try {
+    const res = await axios.get("http://localhost:3000/cakes");
+    return res.data;
+  } catch (error) {
+    console.error("Erro ao buscar os dados: ", error);
+  }
+}
+
+  useEffect(() => {
+    const teste = async () => {
+      const data = await getData();
+      console.log("Deu certo: ", data);
+    }
+
+    teste();
+    return () => {
+    }
+  }, [])
+
+
   return (
     <>
       <Header />
