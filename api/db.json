@@ -82,6 +82,20 @@
       "id": "1edf",
       "preco": 49.99,
       "peso": 1400
+    },
+    {
+      "nome": "Morango com creme",
+      "categorias": [
+        "morango",
+        "destaques"
+      ],
+      "descricao": "Bolo macio de Morango, com recheio cremoso para um sabor irresistível.",
+      "imagens": [
+        "1755846779314.webp"
+      ],
+      "id": "1edg",
+      "preco": 41.70,
+      "peso": 1000
     }
   ]
 }

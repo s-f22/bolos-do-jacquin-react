@@ -6,24 +6,31 @@ import { useEffect, useState } from 'react';
 import type { Bolo } from '../../types/Bolo';
 import { getBolos } from '../../services/bolosService';
 import { formatosService } from '../../services/formatosService';
+import { useParams } from 'react-router-dom';
 
 export default function Produtos() {
 
   const [bolos, setBolos] = useState<Bolo[]>([]); //onde: <Bolo[]> define o tipo do estado; ([]) define o valor inicial;
+  const { categoria } = useParams<{ categoria: string }>();
+
 
   const fetchBolos = async () => {
     try {
       const data = await getBolos();
-      setBolos(data);
+      if (categoria) {
+        const filtrados = data.filter(b => b.categorias.includes(categoria));
+        setBolos(filtrados);
+      } else {
+        console.warn("Categoria não definida na URL.");
+        setBolos([]);
+      }
     } catch (error) {
       console.error("Erro ao executar getBolos: ", error);
     }
   }
 
   useEffect(() => {
-
     fetchBolos();
-
   }, [])
 
 
@@ -43,9 +50,11 @@ export default function Produtos() {
               bolos.map((b: Bolo) => (
                 <div id={b.id} className="card">
                   <img src={`http://localhost:3000/static/${b.imagens[0]}`} alt="" />
-                  <h2>{b.nome}</h2>
-                  <p>{b.descricao}</p>
-                  <span>{formatosService.PrecoBR(b.preco)}</span>
+                  <div className='card_textos'>
+                    <h2>{b.nome}</h2>
+                    <p>{b.descricao}</p>
+                    <span>{formatosService.PrecoBR(b.preco)}</span>
+                  </div>
                 </div>
               ))
             }
