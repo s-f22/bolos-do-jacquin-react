@@ -5,6 +5,7 @@ import Footer from '../../components/Footer/Footer';
 import { useEffect, useState } from 'react';
 import type { Bolo } from '../../types/Bolo';
 import { getBolos } from '../../services/bolosService';
+import { formatosService } from '../../services/formatosService';
 
 export default function Produtos() {
 
@@ -44,7 +45,7 @@ export default function Produtos() {
                   <img src={`http://localhost:3000/static/${b.imagens[0]}`} alt="" />
                   <h2>{b.nome}</h2>
                   <p>{b.descricao}</p>
-                  <span>{b.preco}</span>
+                  <span>{formatosService.PrecoBR(b.preco)}</span>
                 </div>
               ))
             }
