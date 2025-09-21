@@ -2,6 +2,7 @@ import Footer from '../../components/Footer/Footer'
 import whatsIcon from '../../assets/whatsapp.png';
 import fotoJacquin from '../../assets/jacquin-masterchef.png'
 import './Home.css'
+import { Link } from 'react-router-dom';
 
 export default function Home() {
   return (
@@ -36,7 +37,7 @@ export default function Home() {
         <section className="secao_cards">
           <h1 className="acessivel">Pagina inicial</h1>
 
-          <a className="homeCard card_cacau" href="">
+          <Link to={"/produtos/chocolate"} className="homeCard card_cacau">
             <svg xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 448 512">
               <path fill="currentColor"
@@ -50,9 +51,8 @@ export default function Home() {
             </svg>
 
             <h2>Chocolate</h2>
-          </a>
-
-          <a className="homeCard card_cerimonias" href="">
+          </Link>
+          <Link to={"/produtos/cerimonias"} className="homeCard card_cerimonias">
             <svg xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 448 512">
               <path fill="currentColor"
@@ -66,9 +66,9 @@ export default function Home() {
             </svg>
 
             <h2>Cerimônias</h2>
-          </a>
+          </Link>
 
-          <a className="homeCard card_morango" href="">
+          <Link to={"/produtos/morango"} className="homeCard card_morango">
             <svg xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 448 512">
               <path fill="currentColor"
@@ -82,9 +82,9 @@ export default function Home() {
             </svg>
 
             <h2>Morango</h2>
-          </a>
+          </Link>
 
-          <a className="homeCard card_natal" href="">
+          <Link to={"/produtos/natal"} className="homeCard card_natal">
             <svg xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 448 512">
               <path fill="currentColor"
@@ -98,9 +98,9 @@ export default function Home() {
             </svg>
 
             <h2>Natal</h2>
-          </a>
+          </Link>
 
-          <a className="homeCard card_coco" href="">
+          <Link to={"/produtos/coco"} className="homeCard card_coco">
             <svg xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 448 512">
               <path fill="currentColor"
@@ -114,9 +114,9 @@ export default function Home() {
             </svg>
 
             <h2>Coco</h2>
-          </a>
+          </Link>
 
-          <a className="homeCard card_destaques" href="">
+          <Link to={"/produtos/destaques"} className="homeCard card_destaques">
             <svg xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 448 512">
               <path fill="currentColor"
@@ -130,7 +130,7 @@ export default function Home() {
             </svg>
 
             <h2>Destaques</h2>
-          </a>
+          </Link>
         </section>
 
         <a className="whatsapp" href="https://wa.me/5511999999999?text=Olá%20,%20gostaria%20de%20mais%20informações."
