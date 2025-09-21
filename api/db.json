@@ -1,87 +1,87 @@
 {
-  "cakes": [
+  "bolos": [
     {
-      "name": "Chocolate Belga",
-      "category": [
+      "nome": "Chocolate Belga",
+      "categorias": [
         "destaques",
         "chocolate"
       ],
-      "description": "Bolo macio de chocolate, aplicado granulado que traz crocância e um sabor irresistível.",
-      "images": [
+      "descricao": "Bolo macio de chocolate, aplicado granulado que traz crocância e um sabor irresistível.",
+      "imagens": [
         "0000000000001.png"
       ],
       "id": "1eda",
-      "price": 50.00,
-      "weight": 1500
+      "preco": 50.00,
+      "peso": 1500
     },
     {
-      "name": "Chocolate com Ninho",
-      "category": [
+      "nome": "Chocolate com Ninho",
+      "categorias": [
         "destaques",
         "chocolate"
       ],
-      "description": "Bolo macio de chocolate com creme de leite Ninho, um sabor irresistível.",
-      "images": [
+      "descricao": "Bolo macio de chocolate com creme de leite Ninho, um sabor irresistível.",
+      "imagens": [
         "0000000000002.png"
       ],
       "id": "1edb",
-      "price": 59.99,
-      "weight": 1200
+      "preco": 59.99,
+      "peso": 1200
     },
     {
-      "name": "Cenoura com Chocolate",
-      "category": [
+      "nome": "Cenoura com Chocolate",
+      "categorias": [
         "chocolate"
       ],
-      "description": "Bolo macio cenoura com cobertura de chocolate, um sabor família e irresistível.",
-      "images": [
+      "descricao": "Bolo macio cenoura com cobertura de chocolate, um sabor família e irresistível.",
+      "imagens": [
         "0000000000003.png"
       ],
       "id": "1edc",
-      "price": 39.99,
-      "weight": 1400
+      "preco": 39.99,
+      "peso": 1400
     },
     {
-      "name": "Ninho com Morango",
-      "category": [
+      "nome": "Ninho com Morango",
+      "categorias": [
         "chocolate",
         "morango"
       ],
-      "description": "Bolo macio de chocolate com recheio de leite ninho e morango. A melhor combinação para seu dia.",
-      "images": [
+      "descricao": "Bolo macio de chocolate com recheio de leite ninho e morango. A melhor combinação para seu dia.",
+      "imagens": [
         "0000000000004.png"
       ],
       "id": "1edd",
-      "price": 45.50,
-      "weight": 1000
+      "preco": 45.50,
+      "peso": 1000
     },
     {
-      "name": "Chocolate com Pistache",
-      "category": [
+      "nome": "Chocolate com Pistache",
+      "categorias": [
         "chocolate",
         "destaques"
       ],
-      "description": "Bolo macio de leite Ninho, com creme delicado e crocante de amendoim para um sabor irresistível.",
-      "images": [
+      "descricao": "Bolo macio de leite Ninho, com creme delicado e crocante de amendoim para um sabor irresistível.",
+      "imagens": [
         "0000000000005.png"
       ],
       "id": "1ede",
-      "price": 75.49,
-      "weight": 900
+      "preco": 75.49,
+      "peso": 900
     },
     {
-      "name": "Chocolate com Oreo",
-      "category": [
+      "nome": "Chocolate com Oreo",
+      "categorias": [
         "chocolate",
         "destaques"
       ],
-      "description": "Bolo macio de Oreo, com biscoito crocante recheado de creme para um sabor irresistível.",
-      "images": [
+      "descricao": "Bolo macio de Oreo, com biscoito crocante recheado de creme para um sabor irresistível.",
+      "imagens": [
         "0000000000006.png"
       ],
       "id": "1edf",
-      "price": 49.99,
-      "weight": 1400
+      "preco": 49.99,
+      "peso": 1400
     }
   ]
 }

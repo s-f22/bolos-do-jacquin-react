@@ -1,32 +1,28 @@
 import Header from '../../components/Header/Header'
 import './Produtos.css'
-import chocolateBelga from '../../assets/imgs/choc-belga.png'
 import whatsIcon from '../../assets/whatsapp.png';
 import Footer from '../../components/Footer/Footer';
-import { useEffect } from 'react';
-import axios from 'axios';
+import { useEffect, useState } from 'react';
+import type { Bolo } from '../../types/Bolo';
+import { getBolos } from '../../services/bolosService';
 
 export default function Produtos() {
 
+  const [bolos, setBolos] = useState<Bolo[]>([]); //onde: <Bolo[]> define o tipo do estado; ([]) define o valor inicial;
 
-const getData = async () => {
-  try {
-    const res = await axios.get("http://localhost:3000/cakes");
-    return res.data;
-  } catch (error) {
-    console.error("Erro ao buscar os dados: ", error);
+  const fetchBolos = async () => {
+    try {
+      const data = await getBolos();
+      setBolos(data);
+    } catch (error) {
+      console.error("Erro ao executar getBolos: ", error);
+    }
   }
-}
 
   useEffect(() => {
-    const teste = async () => {
-      const data = await getData();
-      console.log("Deu certo: ", data);
-    }
 
-    teste();
-    return () => {
-    }
+    fetchBolos();
+
   }, [])
 
 
@@ -42,45 +38,16 @@ const getData = async () => {
             <hr />
           </div>
           <div className="cards">
-            <div className="card">
-              <img src={chocolateBelga} alt="" />
-              <h2>Chocolate Belga</h2>
-              <p>Bolo macio de chocolate, aplicado granulado que traz crocância e um sabor irresistível.</p>
-              <span>R$ 50,00/kg.</span>
-            </div>
-            <div className="card">
-              <img src={chocolateBelga} alt="" />
-              <h2>Chocolate com Ninho</h2>
-              <p>Bolo macio de chocolate com creme de leite Ninho, um sabor irresistível.</p>
-              <span>R$ 50,00/kg.</span>
-            </div>
-            <div className="card">
-              <img src={chocolateBelga} alt="" />
-              <h2>Cenoura com Chocolate</h2>
-              <p>Bolo macio cenoura com cobertura de chocolate, um sabor família e irresistível.</p>
-              <span>R$ 50,00/kg.</span>
-            </div>
-            <div className="card">
-              <img src={chocolateBelga} alt="" />
-              <h2>Ninho com Morango</h2>
-              <p>Bolo macio de chocolate com recheio de leite ninho e morango. A melhor combinação para seu dia.
-              </p>
-              <span>R$ 50,00/kg.</span>
-            </div>
-            <div className="card">
-              <img src={chocolateBelga} alt="" />
-              <h2>Chocolate com Pistache</h2>
-              <p>Bolo macio de leite Ninho, com creme delicado e crocante de amendoim para um sabor irresistível.
-              </p>
-              <span>R$ 50,00/kg.</span>
-            </div>
-            <div className="card">
-              <img src={chocolateBelga} alt="" />
-              <h2>Chocolate com Oreo</h2>
-              <p>Bolo macio de leite Ninho, com creme delicado e crocante de amendoim para um sabor irresistível.
-              </p>
-              <span>R$ 50,00/kg.</span>
-            </div>
+            {
+              bolos.map((b: Bolo) => (
+                <div id={b.id} className="card">
+                  <img src={`http://localhost:3000/static/${b.imagens[0]}`} alt="" />
+                  <h2>{b.nome}</h2>
+                  <p>{b.descricao}</p>
+                  <span>{b.preco}</span>
+                </div>
+              ))
+            }
           </div>
         </section>
         <a className="whatsapp" href="https://wa.me/5511999998888?text=Olá%20quero%20saber%20mais!" target="_blank">
