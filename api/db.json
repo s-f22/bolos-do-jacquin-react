@@ -2,100 +2,102 @@
   "bolos": [
     {
       "nome": "Chocolate Belga",
-      "categorias": [
-        "destaques",
-        "chocolate"
-      ],
+      "categorias": ["chocolate"],
       "descricao": "Bolo macio de chocolate, aplicado granulado que traz crocância e um sabor irresistível.",
-      "imagens": [
-        "0000000000001.png"
-      ],
-      "id": "1eda",
+      "imagens": ["3458546845741.png"],
+      "id": "f5r1",
       "preco": 50.00,
       "peso": 1500
     },
     {
       "nome": "Chocolate com Ninho",
-      "categorias": [
-        "destaques",
-        "chocolate"
-      ],
+      "categorias": ["destaques", "chocolate"],
       "descricao": "Bolo macio de chocolate com creme de leite Ninho, um sabor irresistível.",
-      "imagens": [
-        "0000000000002.png"
-      ],
-      "id": "1edb",
+      "imagens": ["1587964245846.png"],
+      "id": "a38h",
       "preco": 59.99,
       "peso": 1200
     },
     {
       "nome": "Cenoura com Chocolate",
-      "categorias": [
-        "chocolate"
-      ],
+      "categorias": ["chocolate"],
       "descricao": "Bolo macio cenoura com cobertura de chocolate, um sabor família e irresistível.",
-      "imagens": [
-        "0000000000003.png"
-      ],
-      "id": "1edc",
+      "imagens": ["4791205837462.png"],
+      "id": "bb85",
       "preco": 39.99,
       "peso": 1400
     },
     {
       "nome": "Ninho com Morango",
-      "categorias": [
-        "chocolate",
-        "morango"
-      ],
+      "categorias": ["chocolate", "morango"],
       "descricao": "Bolo macio de chocolate com recheio de leite ninho e morango. A melhor combinação para seu dia.",
-      "imagens": [
-        "0000000000004.png"
-      ],
-      "id": "1edd",
+      "imagens": ["6502837192043.png"],
+      "id": "a77q",
       "preco": 45.50,
       "peso": 1000
     },
     {
       "nome": "Chocolate com Pistache",
-      "categorias": [
-        "chocolate",
-        "destaques"
-      ],
+      "categorias": ["chocolate", "destaques"],
       "descricao": "Bolo macio de leite Ninho, com creme delicado e crocante de amendoim para um sabor irresistível.",
-      "imagens": [
-        "0000000000005.png"
-      ],
-      "id": "1ede",
+      "imagens": ["1983745601290.png"],
+      "id": "889e",
       "preco": 75.49,
       "peso": 900
     },
     {
       "nome": "Chocolate com Oreo",
-      "categorias": [
-        "chocolate",
-        "destaques"
-      ],
+      "categorias": ["chocolate", "destaques"],
       "descricao": "Bolo macio de Oreo, com biscoito crocante recheado de creme para um sabor irresistível.",
-      "imagens": [
-        "0000000000006.png"
-      ],
-      "id": "1edf",
+      "imagens": ["7021948563207.png"],
+      "id": "12ww",
       "preco": 49.99,
       "peso": 1400
     },
     {
       "nome": "Morango com creme",
-      "categorias": [
-        "morango",
-        "destaques"
-      ],
+      "categorias": ["morango", "destaques"],
       "descricao": "Bolo macio de Morango, com recheio cremoso para um sabor irresistível.",
-      "imagens": [
-        "1755846779314.webp"
-      ],
-      "id": "1edg",
+      "imagens": ["3849271056381.png"],
+      "id": "1ny1",
       "preco": 41.70,
       "peso": 1000
+    },
+    {
+      "nome": "Red-velvet",
+      "categorias": ["morango", "destaques"],
+      "descricao": "Massa aveludada de Red Velvet com recheio suave, combinando sabor marcante e textura delicada em cada fatia.",
+      "imagens": ["5428564784294.png"],
+      "id": "awe7",
+      "preco": 54.90,
+      "peso": 1100
+    },
+    {
+      "nome": "Passas",
+      "categorias": ["natal"],
+      "descricao": "Tradicional bolo natalino com massa macia e generosa porção de passas, perfeito para celebrar com um toque de sabor clássico.",
+      "imagens": ["8754856321485.png"],
+      "id": "8jy2",
+      "preco": 42.00,
+      "peso": 1300
+    },
+    {
+      "nome": "Coco recheado",
+      "categorias": ["coco"],
+      "descricao": "Massa fofinha de coco com recheio cremoso e envolvente, trazendo um sabor tropical irresistível.",
+      "imagens": ["9786134582154.png"],
+      "id": "33u3",
+      "preco": 46.90,
+      "peso": 1000
+    },
+    {
+      "nome": "Bolo de casamento",
+      "categorias": ["cerimonias"],
+      "descricao": "Elegante e saboroso, com camadas leves e recheio refinado — ideal para celebrar momentos únicos com um toque de doçura inesquecível.",
+      "imagens": ["7852364781455.png"],
+      "id": "d7ty",
+      "preco": 120.00,
+      "peso": 2500
     }
   ]
 }
