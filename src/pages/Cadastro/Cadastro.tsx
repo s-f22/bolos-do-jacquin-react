@@ -4,8 +4,16 @@ import Header from "../../components/Header/Header";
 import './Cadastro.css'
 import { getBolos } from "../../services/bolosService";
 import type { Bolo } from "../../types/Bolo";
+import { formatosService } from "../../services/formatosService";
 
 export default function Cadastro() {
+
+  const [nomeBolo, setNomeBolo] = useState<string>("");
+  const [categorias, setCategorias] = useState<string[]>([""]);
+  const [imagem, setImagem] = useState<File | null>(null);
+  const [preco, setPreco] = useState<number>();
+  const [peso, setPeso] = useState<number | null>();
+  const [descricao, setDescricao] = useState<string>("");
 
   const [bolos, setBolos] = useState<Bolo[]>([]);
 
@@ -35,7 +43,13 @@ export default function Cadastro() {
             <div className="cadastro_col1">
               <div className="campo campo_bolo">
                 <label htmlFor="bolo">Bolo</label>
-                <input id="bolo" type="text" />
+                <input
+                  id="bolo"
+                  type="text"
+                  placeholder="Insira o nome do bolo"
+                  value={nomeBolo}
+                  onChange={e => setNomeBolo(e.target.value)}
+                />
               </div>
               <div className="linha_cat_img">
                 <div className="campo campo_categoria">
@@ -85,6 +99,8 @@ export default function Cadastro() {
                 <th>Bolo</th>
                 <th>Categoria</th>
                 <th>Descrição</th>
+                <th>Preço</th>
+                <th>Peso</th>
                 <th>Excluir</th>
               </tr>
             </thead>
@@ -95,6 +111,8 @@ export default function Cadastro() {
                     <td data-cell="Bolo">{b.nome}</td>
                     <td data-cell="Categorias">{b.categorias.map(c => c.charAt(0).toUpperCase() + c.slice(1)).join(", ")}</td>
                     <td data-cell="Descrição">{b.descricao}</td>
+                    <td data-cell="Preço">{formatosService.PrecoBR(b.preco)}</td>
+                    <td data-cell="Peso">{b.peso ? formatosService.PesoEmGramas(b.peso) : "Não cadastrado"}</td>
                     <td>
                       <svg xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 640 640">

@@ -34,7 +34,7 @@
       "imagens": ["6502837192043.png"],
       "id": "a77q",
       "preco": 45.50,
-      "peso": 1000
+      "peso": null
     },
     {
       "nome": "Chocolate com Pistache",
@@ -61,7 +61,7 @@
       "imagens": ["3849271056381.png"],
       "id": "1ny1",
       "preco": 41.70,
-      "peso": 1000
+      "peso": null
     },
     {
       "nome": "Red-velvet",
@@ -88,7 +88,7 @@
       "imagens": ["9786134582154.png"],
       "id": "33u3",
       "preco": 46.90,
-      "peso": 1000
+      "peso": null
     },
     {
       "nome": "Bolo de casamento",

@@ -7,4 +7,8 @@ export const formatosService = {
     }) } / kg`
   },
 
+  PesoEmGramas: (valorPeso: number): string => {
+    return `${valorPeso.toLocaleString('pt-BR')} g`;
+  }
+
 }
