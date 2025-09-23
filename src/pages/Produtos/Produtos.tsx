@@ -42,7 +42,7 @@ export default function Produtos() {
         <section className="container">
           <h1 className="acessivel">produtos de chocoltae</h1>
           <div className="titulo">
-            <span>Chocolate</span>
+            <span>{ categoria ? categoria?.charAt(0).toUpperCase() + categoria?.slice(1).toLowerCase() : "Categoria não definida na URL" }</span>
             <hr />
           </div>
           <div className="cards">

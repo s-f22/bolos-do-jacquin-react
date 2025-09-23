@@ -66,7 +66,7 @@
     {
       "nome": "Red-velvet",
       "categorias": ["morango", "destaques"],
-      "descricao": "Massa aveludada de Red Velvet com recheio suave, combinando sabor marcante e textura delicada em cada fatia.",
+      "descricao": "Massa aveludada com recheio suave, combinando sabor marcante e textura delicada em cada fatia.",
       "imagens": ["5428564784294.png"],
       "id": "awe7",
       "preco": 54.90,
@@ -75,7 +75,7 @@
     {
       "nome": "Passas",
       "categorias": ["natal"],
-      "descricao": "Tradicional bolo natalino com massa macia e generosa porção de passas, perfeito para celebrar com um toque de sabor clássico.",
+      "descricao": "Tradicional bolo natalino com massa macia, perfeito para celebrar com um toque de sabor clássico.",
       "imagens": ["8754856321485.png"],
       "id": "8jy2",
       "preco": 42.00,
@@ -93,7 +93,7 @@
     {
       "nome": "Bolo de casamento",
       "categorias": ["cerimonias"],
-      "descricao": "Elegante e saboroso, com camadas leves e recheio refinado — ideal para celebrar momentos únicos com um toque de doçura inesquecível.",
+      "descricao": "Elegante e saboroso, ideal para celebrar momentos únicos com um toque de doçura inesquecível.",
       "imagens": ["7852364781455.png"],
       "id": "d7ty",
       "preco": 120.00,
