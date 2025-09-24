@@ -130,7 +130,7 @@
     border: solid 1px #cccccc;
 }
 
-.main_cadastro input[type="button"] {
+.main_cadastro button[type="submit"] {
     padding: 10px 100px;
     margin-top: 50px;
     border-radius: 10px;

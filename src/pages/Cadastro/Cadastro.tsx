@@ -1,18 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ChangeEvent } from "react";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import './Cadastro.css'
-import { getBolos } from "../../services/bolosService";
+import { enviarFoto, getBolos } from "../../services/bolosService";
 import type { Bolo } from "../../types/Bolo";
 import { formatosService } from "../../services/formatosService";
+import axios from "axios";
 
 export default function Cadastro() {
 
   const [nomeBolo, setNomeBolo] = useState<string>("");
-  const [categorias, setCategorias] = useState<string[]>([""]);
-  const [imagem, setImagem] = useState<File | null>(null);
+  const [categorias, setCategorias] = useState<string>("");
+  const [imagem, setImagem] = useState<File | undefined>(undefined);
   const [preco, setPreco] = useState<number>();
-  const [peso, setPeso] = useState<number | null>();
+  const [peso, setPeso] = useState<number | undefined>();
   const [descricao, setDescricao] = useState<string>("");
 
   const [bolos, setBolos] = useState<Bolo[]>([]);
@@ -26,6 +27,63 @@ export default function Cadastro() {
     }
   }
 
+  const limparDados = () => {
+    setNomeBolo("");
+    setCategorias("");
+    setImagem(undefined);
+    setPreco(undefined);
+    setPeso(undefined);
+    setDescricao("");
+  }
+
+  const extrairImagem = (img: ChangeEvent<HTMLInputElement>) => {
+    const file = img.target.files?.[0];
+    if (file) setImagem(file);
+    else setImagem(undefined);
+  }
+
+
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!nomeBolo || !categorias || !preco) {
+      alert("Preencha os campos: \nNome do bolo; categorias e preço");
+      return
+    }
+
+    let uploadedFileName: string | undefined;
+    if (imagem) {
+      uploadedFileName = await enviarFoto(imagem);
+
+      if (!uploadedFileName) {
+        return;
+      }
+    }
+
+    const novoBolo: Bolo = {
+      id: undefined,
+      nome: nomeBolo,
+      descricao: descricao,
+      preco: preco,
+      peso: peso ?? undefined,
+      categorias: categorias.toLowerCase().split(",").map(c => c.trim()),
+      imagens: uploadedFileName ? [uploadedFileName] : []
+    }
+
+    try {
+      const postResponse = await axios.post("http://localhost:3000/bolos", novoBolo);
+      if (postResponse.status === 201) {
+        alert("Novo bolo cadastrado com sucesso!");
+        limparDados();
+        fetchBolos();
+      }
+    } catch (error) {
+      console.error("Erro ao cadastrar novo bolo: ", error);
+      alert("Erro ao cadastrar novo bolo");
+    }
+  }
+
   useEffect(() => {
     fetchBolos();
   }, [])
@@ -36,7 +94,7 @@ export default function Cadastro() {
       <Header />
       <main className="main_cadastro">
         <h1 className="acessivel">Tela de cadastro e listagem de produtos</h1>
-        <form>
+        <form onSubmit={handleSubmit}>
           <h2>Cadastro</h2>
           <hr />
           <div className="container container_cadastro">
@@ -54,7 +112,13 @@ export default function Cadastro() {
               <div className="linha_cat_img">
                 <div className="campo campo_categoria">
                   <label htmlFor="categoria">Categorias</label>
-                  <input id="categoria" type="text" />
+                  <input
+                    id="categoria"
+                    type="text"
+                    placeholder="Chocolate, Morango, Coco, Cerimonias, Destaque"
+                    value={categorias}
+                    onChange={c => setCategorias(c.target.value)}
+                  />
                 </div>
                 <div className="campo campo_img">
                   <label htmlFor="img">
@@ -67,26 +131,50 @@ export default function Cadastro() {
                       </svg>
                     </div>
                   </label>
-                  <input type="file" id="img" src="" alt="" />
+                  <input
+                    type="file"
+                    id="img"
+                    alt="imagem_do_bolo"
+                    accept="image/*"
+                    onChange={extrairImagem}
+                  />
                 </div>
               </div>
               <div className="linha_val_peso">
                 <div className="campo campo_valor">
                   <label htmlFor="valor">Valor</label>
-                  <input id="valor" type="text" />
+                  <input
+                    id="valor"
+                    type="number"
+                    placeholder="Digite o preço em R$ / kg"
+                    value={preco}
+                    onChange={p => setPreco(Number(p.target.value))}
+                  />
                 </div>
                 <div className="campo campo_peso">
                   <label htmlFor="peso">Peso</label>
-                  <input id="peso" type="text" />
+                  <input
+                    id="peso"
+                    type="number"
+                    placeholder="Qtde disponível (em g)"
+                    value={Number(peso)}
+                    onChange={p => setPeso(Number(p.target.value))}
+                  />
                 </div>
               </div>
             </div>
             <div className="campo cadastro_col2">
               <label htmlFor="descricao">Descrição</label>
-              <textarea name="" id="descricao" maxLength={200}></textarea>
+              <textarea
+                id="descricao"
+                maxLength={200}
+                placeholder="Insira breves informações sobre o bolo"
+                value={descricao}
+                onChange={d => setDescricao(d.target.value)}
+              />
             </div>
           </div>
-          <input type="button" value="Cadastrar" />
+          <button type="submit">Cadastrar</button>
         </form>
 
         <section className="container_lista">

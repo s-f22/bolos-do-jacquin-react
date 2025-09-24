@@ -1,5 +1,5 @@
 export interface Bolo {
-  id: string;
+  id: string | undefined;
   nome: string;
   descricao: string;
   preco: number;
