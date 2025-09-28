@@ -11,6 +11,17 @@ export const getBolos = async (): Promise<Bolo[]> => {
   }
 };
 
+export const postBolo = async (bolo: Bolo): Promise<void> => {
+  try {
+    await axios.post("http://localhost:3000/bolos", bolo);
+  } catch (error) {
+    console.error("Erro ao cadastrar o bolo:", error);
+    throw error; // Propaga o erro para ser tratado por quem chamou
+  }
+};
+
+
+
 export const enviarFoto = async (file: File): Promise<string | undefined> => {
   const formData = new FormData();
   formData.append("file", file);

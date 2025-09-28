@@ -138,6 +138,7 @@
     font-size: 24px;
     font-family: var(--fontComplementar);
     box-shadow: 0 4px 4px 0 #00000025;
+    cursor: pointer;
 }
 
 
@@ -168,6 +169,7 @@ table td {
 
 table svg {
     width: 30px;
+    cursor: pointer;
 }
 
 

@@ -2,7 +2,7 @@ import { useEffect, useState, type ChangeEvent } from "react";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import './Cadastro.css'
-import { enviarFoto, getBolos } from "../../services/bolosService";
+import { enviarFoto, getBolos, postBolo } from "../../services/bolosService";
 import type { Bolo } from "../../types/Bolo";
 import { formatosService } from "../../services/formatosService";
 import axios from "axios";
@@ -40,31 +40,30 @@ export default function Cadastro() {
 
   const extrairImagem = (img: ChangeEvent<HTMLInputElement>) => {
     const file = img.target.files?.[0];
-    if (file?.type.includes("image")){
+    if (file?.type.includes("image")) {
       setImagem(file);
       setBgImageInputColor("#5cb85c");
-    } 
+    }
     else {
       setImagem(undefined);
       setBgImageInputColor("#ff2c2c");
     }
   }
 
-
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!nomeBolo || !categorias || !preco) {
       alert("Preencha os campos: \nNome do bolo; categorias e preço");
-      return
+      return;
     }
 
     let uploadedFileName: string | undefined;
+
     if (imagem) {
       uploadedFileName = await enviarFoto(imagem);
-
       if (!uploadedFileName) {
+        alert("Cadastro cancelado por falha no upload da imagem.");
         return;
       }
     }
@@ -77,20 +76,18 @@ export default function Cadastro() {
       peso: peso ?? undefined,
       categorias: categorias.toLowerCase().split(",").map(c => c.trim()),
       imagens: uploadedFileName ? [uploadedFileName] : []
-    }
+    };
 
     try {
-      const postResponse = await axios.post("http://localhost:3000/bolos", novoBolo);
-      if (postResponse.status === 201) {
-        alert("Novo bolo cadastrado com sucesso!");
-        limparDados();
-        fetchBolos();
-      }
-    } catch (error) {
-      console.error("Erro ao cadastrar novo bolo: ", error);
-      alert("Erro ao cadastrar novo bolo");
+      await postBolo(novoBolo);
+      alert("Novo bolo cadastrado com sucesso!");
+      limparDados();
+      fetchBolos();
+    } catch {
+      alert("Erro ao cadastrar novo bolo.");
     }
-  }
+  };
+
 
   useEffect(() => {
     fetchBolos();
@@ -131,7 +128,7 @@ export default function Cadastro() {
                 <div className="campo campo_img">
                   <label htmlFor="img">
                     <span>Imagem</span>
-                    <div style={{backgroundColor: bgImageInputColor}}>
+                    <div style={{ backgroundColor: bgImageInputColor }}>
                       <svg xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 448 512">
                         <path fill="currentColor"
