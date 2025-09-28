@@ -15,6 +15,7 @@ export default function Cadastro() {
   const [preco, setPreco] = useState<number>();
   const [peso, setPeso] = useState<number | undefined>();
   const [descricao, setDescricao] = useState<string>("");
+  const [bgImageInputColor, setBgImageInputColor] = useState<string>("#ffffff");
 
   const [bolos, setBolos] = useState<Bolo[]>([]);
 
@@ -34,12 +35,19 @@ export default function Cadastro() {
     setPreco(undefined);
     setPeso(undefined);
     setDescricao("");
+    setBgImageInputColor("#ffffff");
   }
 
   const extrairImagem = (img: ChangeEvent<HTMLInputElement>) => {
     const file = img.target.files?.[0];
-    if (file) setImagem(file);
-    else setImagem(undefined);
+    if (file?.type.includes("image")){
+      setImagem(file);
+      setBgImageInputColor("#5cb85c");
+    } 
+    else {
+      setImagem(undefined);
+      setBgImageInputColor("#ff2c2c");
+    }
   }
 
 
@@ -123,7 +131,7 @@ export default function Cadastro() {
                 <div className="campo campo_img">
                   <label htmlFor="img">
                     <span>Imagem</span>
-                    <div>
+                    <div style={{backgroundColor: bgImageInputColor}}>
                       <svg xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 448 512">
                         <path fill="currentColor"
