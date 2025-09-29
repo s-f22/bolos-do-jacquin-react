@@ -105,6 +105,9 @@
 
 .campo_img label div {
     /* background-color: #ffffff; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     height: 36px;
     border-radius: 10px;
@@ -130,11 +133,21 @@
     border: solid 1px #cccccc;
 }
 
-.main_cadastro button[type="submit"] {
+.botaoSubmit {
     padding: 10px 100px;
     margin-top: 50px;
     border-radius: 10px;
     background-color: var(--corPrincipal);
+    font-size: 24px;
+    font-family: var(--fontComplementar);
+    box-shadow: 0 4px 4px 0 #00000025;
+    cursor: pointer;
+}
+.botaoModalCancelar {
+    padding: 10px 10px;
+    margin-top: 50px;
+    border-radius: 10px;
+    background-color: var(--corBackground);
     font-size: 24px;
     font-family: var(--fontComplementar);
     box-shadow: 0 4px 4px 0 #00000025;
@@ -155,7 +168,7 @@ table {
 
 table th,
 table td {
-    padding: 20px 5px 3px 5px;
+    padding: 1rem 1rem;
 }
 
 table th {
@@ -176,7 +189,6 @@ table svg {
 
 
 /* MEDIA */
-@media screen and (max-width: 768px) {}
 
 @media screen and (max-width: 768px) {
     .main_cadastro .container_cadastro {
@@ -212,7 +224,7 @@ table svg {
 
     table td {
         border-bottom: none;
-        padding-top: 10px;
+        padding: .5rem .5rem 0 .5rem
     }
 
     td:not(:last-child)::before {
@@ -223,7 +235,10 @@ table svg {
 
     td:last-child {
         align-self: flex-end;
-        padding: 0;
+        padding: 0 0 1rem 0;
+    }
+    td:first-child {
+       padding-top: 1rem;
     }
 }
 

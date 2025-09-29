@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Cadastro from "./pages/Cadastro/Cadastro"
 import Produtos from "./pages/Produtos/Produtos"
 import Home from "./pages/Home/Home"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 

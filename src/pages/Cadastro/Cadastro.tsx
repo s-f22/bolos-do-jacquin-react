@@ -5,6 +5,7 @@ import './Cadastro.css'
 import { deleteBolo, enviarFoto, getBolos, postBolo } from "../../services/bolosService";
 import type { Bolo } from "../../types/Bolo";
 import { formatosService } from "../../services/formatosService";
+import { Modal } from "react-bootstrap";
 
 export default function Cadastro() {
 
@@ -15,8 +16,19 @@ export default function Cadastro() {
   const [peso, setPeso] = useState<number | undefined>();
   const [descricao, setDescricao] = useState<string>("");
   const [bgImageInputColor, setBgImageInputColor] = useState<string>("#ffffff");
-
   const [bolos, setBolos] = useState<Bolo[]>([]);
+  const [mostrarModalDelete, setMostrarModalDelete] = useState<boolean>(false);
+  const [mostrarModalSucesso, setMostrarModalSucesso] = useState(false);
+
+  const [idDelete, setIdDelete] = useState<string>("");
+
+  const abrirModalDelete = (id: string) => {
+    setMostrarModalDelete(true);
+    setIdDelete(id);
+  }
+  const fecharModalDelete = () => {
+    setMostrarModalDelete(false);
+  }
 
   const fetchBolos = async () => {
     try {
@@ -37,11 +49,12 @@ export default function Cadastro() {
     setBgImageInputColor("#ffffff");
   }
 
-  const removeItem = async(id: string) => {
+  const removeItem = async (id: string) => {
     try {
       await deleteBolo(id);
-      alert("Bolo removido com sucesso!");
+      setMostrarModalSucesso(true);
       await fetchBolos();
+      fecharModalDelete();
     } catch (error) {
       alert("Erro ao deletar o bolo.");
     }
@@ -188,7 +201,7 @@ export default function Cadastro() {
               />
             </div>
           </div>
-          <button type="submit">Cadastrar</button>
+          <button className="botaoSubmit" type="submit">Cadastrar</button>
         </form>
 
         <section className="container_lista">
@@ -216,7 +229,7 @@ export default function Cadastro() {
                     <td data-cell="Preço">{formatosService.PrecoBR(b.preco)}</td>
                     <td data-cell="Peso">{b.peso ? formatosService.PesoEmGramas(b.peso) : "Não cadastrado"}</td>
                     <td>
-                      <svg onClick={() => removeItem(b.id!)} xmlns="http://www.w3.org/2000/svg"
+                      <svg onClick={() => abrirModalDelete(b.id!)} xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 640 640">
                         <path fill="currentColor"
                           d="M247.4 79.1C251 70 259.9 64 269.7 64L370.3 64C380.1 64 388.9 70 392.6 79.1L412.2 128L227.8 128L247.4 79.1zM210.6 128L104 128C99.6 128 96 131.6 96 136C96 140.4 99.6 144 104 144L536 144C540.4 144 544 140.4 544 136C544 131.6 540.4 128 536 128L429.4 128L407.5 73.1C401.4 58 386.7 48 370.3 48L269.7 48C253.3 48 238.6 58 232.6 73.1L210.6 128zM128 192L128 512C128 547.3 156.7 576 192 576L448 576C483.3 576 512 547.3 512 512L512 192L496 192L496 512C496 538.5 474.5 560 448 560L192 560C165.5 560 144 538.5 144 512L144 192L128 192zM224 264C224 259.6 220.4 256 216 256C211.6 256 208 259.6 208 264L208 472C208 476.4 211.6 480 216 480C220.4 480 224 476.4 224 472L224 264zM328 264C328 259.6 324.4 256 320 256C315.6 256 312 259.6 312 264L312 472C312 476.4 315.6 480 320 480C324.4 480 328 476.4 328 472L328 264zM432 264C432 259.6 428.4 256 424 256C419.6 256 416 259.6 416 264L416 472C416 476.4 419.6 480 424 480C428.4 480 432 476.4 432 472L432 264z" />
@@ -230,6 +243,39 @@ export default function Cadastro() {
         </section>
       </main>
       <Footer />
+
+      <Modal style={{ fontFamily: "Bellota, system-ui" }} show={mostrarModalDelete} onHide={fecharModalDelete}>
+        <Modal.Header>
+          <Modal.Title >Confirmar exclusão</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Tem certeza que deseja remover o bolo? Esta ação não poderá ser revertida.
+        </Modal.Body>
+        <Modal.Footer>
+          <button onClick={fecharModalDelete} className="botaoModalCancelar">Cancelar</button>
+          <button onClick={() => removeItem(idDelete)} className="botaoSubmit">Excluir</button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal
+        style={{ fontFamily: "Bellota, system-ui" }}
+        show={mostrarModalSucesso}
+        onHide={() => setMostrarModalSucesso(false)}
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Sucesso</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Bolo removido com sucesso!
+        </Modal.Body>
+        <Modal.Footer>
+          <button onClick={() => setMostrarModalSucesso(false)} className="botaoSubmit">
+            Ok
+          </button>
+        </Modal.Footer>
+      </Modal>
+
     </>
   )
 }
