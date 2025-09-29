@@ -18,6 +18,8 @@ header {
 
 .icone_home {
     width: 50px;
+    cursor: pointer;
+    color: black;
 }
 
 .logo_header {

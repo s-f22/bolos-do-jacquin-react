@@ -19,7 +19,6 @@ export default function Cadastro() {
   const [bolos, setBolos] = useState<Bolo[]>([]);
   const [mostrarModalDelete, setMostrarModalDelete] = useState<boolean>(false);
   const [mostrarModalSucesso, setMostrarModalSucesso] = useState(false);
-
   const [idDelete, setIdDelete] = useState<string>("");
 
   const abrirModalDelete = (id: string) => {
@@ -29,7 +28,6 @@ export default function Cadastro() {
   const fecharModalDelete = () => {
     setMostrarModalDelete(false);
   }
-
   const fetchBolos = async () => {
     try {
       const dados = await getBolos();
@@ -38,7 +36,6 @@ export default function Cadastro() {
       console.error("Erro ao executar getBolos: ", error);
     }
   }
-
   const limparDados = () => {
     setNomeBolo("");
     setCategorias("");
@@ -48,7 +45,6 @@ export default function Cadastro() {
     setDescricao("");
     setBgImageInputColor("#ffffff");
   }
-
   const removeItem = async (id: string) => {
     try {
       await deleteBolo(id);
@@ -59,7 +55,6 @@ export default function Cadastro() {
       alert("Erro ao deletar o bolo.");
     }
   }
-
   const extrairImagem = (img: ChangeEvent<HTMLInputElement>) => {
     const file = img.target.files?.[0];
     if (file?.type.includes("image")) {
@@ -71,7 +66,6 @@ export default function Cadastro() {
       setBgImageInputColor("#ff2c2c");
     }
   }
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -109,8 +103,6 @@ export default function Cadastro() {
       alert("Erro ao cadastrar novo bolo.");
     }
   };
-
-
   useEffect(() => {
     fetchBolos();
   }, [])
@@ -263,7 +255,7 @@ export default function Cadastro() {
         onHide={() => setMostrarModalSucesso(false)}
         centered
       >
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>Sucesso</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -271,7 +263,7 @@ export default function Cadastro() {
         </Modal.Body>
         <Modal.Footer>
           <button onClick={() => setMostrarModalSucesso(false)} className="botaoSubmit">
-            Ok
+            OK
           </button>
         </Modal.Footer>
       </Modal>

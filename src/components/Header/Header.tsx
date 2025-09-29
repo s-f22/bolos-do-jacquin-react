@@ -1,20 +1,48 @@
+import { Link, useNavigate } from 'react-router-dom';
 import './Header.css';
+import { useState } from 'react';
 
 export default function Header() {
+
+  const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    if (!searchTerm.trim()) return; // ignora buscas vazias
+    console.log('Buscando por:', searchTerm);
+    navigate(`/produtos/pesquisa?query=${encodeURIComponent(searchTerm)}`);
+    setSearchTerm("");
+  };
+
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   return (
     <header>
       <div className="container container_header">
-        <svg className="icone_home" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
-          <path fill="currentColor"
-            d="M320 80C452.5 80 560 187.5 560 320C560 452.5 452.5 560 320 560C187.5 560 80 452.5 80 320C80 187.5 187.5 80 320 80zM320 576C461.4 576 576 461.4 576 320C576 178.6 461.4 64 320 64C178.6 64 64 178.6 64 320C64 461.4 178.6 576 320 576zM296 360C296 355.6 299.6 352 304 352L336 352C340.4 352 344 355.6 344 360L344 432L296 432L296 360zM280 432L256 432C238.3 432 224 417.7 224 400L224 281.4L320 202.3L416 281.4L416 400C416 417.7 401.7 432 384 432L360 432L360 360C360 346.7 349.3 336 336 336L304 336C290.7 336 280 346.7 280 360L280 432zM208 294.6L208 400C208 426.5 229.5 448 256 448L384 448C410.5 448 432 426.5 432 400L432 294.6L450.9 310.2C454.3 313 459.4 312.5 462.2 309.1C465 305.7 464.5 300.6 461.1 297.8L325.1 185.8C322.1 183.4 317.9 183.4 314.9 185.8L178.9 297.8C175.5 300.6 175 305.7 177.8 309.1C180.6 312.5 185.7 313 189.1 310.2L208 294.6z" />
-        </svg>
+        <Link to={"/"}>
+          <svg className="icone_home" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+            <path fill="currentColor"
+              d="M320 80C452.5 80 560 187.5 560 320C560 452.5 452.5 560 320 560C187.5 560 80 452.5 80 320C80 187.5 187.5 80 320 80zM320 576C461.4 576 576 461.4 576 320C576 178.6 461.4 64 320 64C178.6 64 64 178.6 64 320C64 461.4 178.6 576 320 576zM296 360C296 355.6 299.6 352 304 352L336 352C340.4 352 344 355.6 344 360L344 432L296 432L296 360zM280 432L256 432C238.3 432 224 417.7 224 400L224 281.4L320 202.3L416 281.4L416 400C416 417.7 401.7 432 384 432L360 432L360 360C360 346.7 349.3 336 336 336L304 336C290.7 336 280 346.7 280 360L280 432zM208 294.6L208 400C208 426.5 229.5 448 256 448L384 448C410.5 448 432 426.5 432 400L432 294.6L450.9 310.2C454.3 313 459.4 312.5 462.2 309.1C465 305.7 464.5 300.6 461.1 297.8L325.1 185.8C322.1 183.4 317.9 183.4 314.9 185.8L178.9 297.8C175.5 300.6 175 305.7 177.8 309.1C180.6 312.5 185.7 313 189.1 310.2L208 294.6z" />
+          </svg>
+        </Link>
         <div className="busca">
           <svg xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 640 640">
             <path fill="currentColor"
               d="M448 272C448 174.8 369.2 96 272 96C174.8 96 96 174.8 96 272C96 369.2 174.8 448 272 448C369.2 448 448 369.2 448 272zM407.3 430C371 461.2 323.7 480 272 480C157.1 480 64 386.9 64 272C64 157.1 157.1 64 272 64C386.9 64 480 157.1 480 272C480 323.7 461.2 371 430 407.3L571.3 548.7C577.5 554.9 577.5 565.1 571.3 571.3C565.1 577.5 554.9 577.5 548.7 571.3L407.3 430z" />
           </svg>
-          <input type="text" name="" id="" />
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyDown={handleKeyDown}
+            placeholder="pesquisar"
+          />
         </div>
         <svg className="logo_header" viewBox="0 0 277 125" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g filter="url(#filter0_d_2_41)">

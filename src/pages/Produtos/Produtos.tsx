@@ -6,12 +6,15 @@ import { useEffect, useState } from 'react';
 import type { Bolo } from '../../types/Bolo';
 import { getBolos } from '../../services/bolosService';
 import { formatosService } from '../../services/formatosService';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 export default function Produtos() {
 
   const [bolos, setBolos] = useState<Bolo[]>([]); //onde: <Bolo[]> define o tipo do estado; ([]) define o valor inicial;
   const { categoria } = useParams<{ categoria: string }>();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const query = searchParams.get('query');
 
 
   const fetchBolos = async () => {
@@ -20,18 +23,25 @@ export default function Produtos() {
       if (categoria) {
         const filtrados = data.filter(b => b.categorias.includes(categoria));
         setBolos(filtrados);
+      } else if (query) {
+        const filtrados = data.filter(b =>
+          b.nome.toLowerCase().includes(query.toLowerCase()) ||
+          b.descricao.toLowerCase().includes(query.toLowerCase())
+        );
+        setBolos(filtrados);
       } else {
-        console.warn("Categoria não definida na URL.");
+        console.warn("Nenhuma categoria ou termo de busca definido.");
         setBolos([]);
       }
     } catch (error) {
       console.error("Erro ao executar getBolos: ", error);
     }
-  }
+  };
+
 
   useEffect(() => {
     fetchBolos();
-  }, [])
+  }, [categoria, query]);
 
 
   return (
@@ -42,7 +52,16 @@ export default function Produtos() {
         <section className="container">
           <h1 className="acessivel">produtos de chocoltae</h1>
           <div className="titulo">
-            <span>{ categoria ? categoria?.charAt(0).toUpperCase() + categoria?.slice(1).toLowerCase() : "Categoria não definida na URL" }</span>
+            <span>
+              {
+                categoria
+                  ? categoria.charAt(0).toUpperCase() + categoria.slice(1).toLowerCase()
+                  : query
+                    ? `Resultados para: "${query}"`
+                    : "Nenhum filtro aplicado"
+              }
+            </span>
+
             <hr />
           </div>
           <div className="cards">

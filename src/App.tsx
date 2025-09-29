@@ -12,6 +12,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/produtos/:categoria" element={<Produtos />} />
+        <Route path="/produtos/pesquisa" element={<Produtos />} />
       </Routes>
     </BrowserRouter>
   )
