@@ -14,7 +14,6 @@ Este projeto serve como base para que os alunos possam:
 - Integrar o frontend com uma API REST simulada;
 - Trabalhar com rotas, componentes e serviços;
 - Aprender sobre manipulação de formulários e upload de arquivos;
-- Estilizar aplicações com Bootstrap.
 
 ---
 
@@ -26,8 +25,6 @@ Este projeto serve como base para que os alunos possam:
 - **Vite** (ferramenta de build e desenvolvimento)
 - **React Router DOM v7**
 - **Axios** (requisições HTTP)
-- **Bootstrap 5** (estilização)
-- ESLint com suporte a TypeScript
 
 ### 🟠 API Fake (apenas para uploads)
 
