@@ -1,69 +1,112 @@
-# React + TypeScript + Vite
+# 🧁 Bolos do Jacquin - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Projeto modelo desenvolvido para os alunos do curso **CO>DE VW/Pe. Léo**, com o objetivo de demonstrar a construção de uma aplicação **React com TypeScript**, focada na criação de um **catálogo de produtos com upload de imagens**.
 
-Currently, two official plugins are available:
+A proposta é simular uma vitrine digital de bolos chamada **Bolos do Jacquin**, com funcionalidades básicas de cadastro e visualização de produtos, utilizando uma API fake com suporte a upload de imagens.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 📚 Objetivo Educacional
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Este projeto serve como base para que os alunos possam:
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Compreender a estrutura de um projeto React com TypeScript;
+- Integrar o frontend com uma API REST simulada;
+- Trabalhar com rotas, componentes e serviços;
+- Aprender sobre manipulação de formulários e upload de arquivos;
+- Estilizar aplicações com Bootstrap.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🧰 Tecnologias Utilizadas
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 🔵 Frontend
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **React 19** + **TypeScript**
+- **Vite** (ferramenta de build e desenvolvimento)
+- **React Router DOM v7**
+- **Axios** (requisições HTTP)
+- **Bootstrap 5** (estilização)
+- ESLint com suporte a TypeScript
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### 🟠 API Fake (apenas para uploads)
+
+- **Express**
+- **json-server**
+- **multer** (upload de imagens)
+- **swagger-ui-express** (documentação da API)
+
+---
+
+## 📁 Estrutura do Projeto
+.
+├── api/ # API fake com upload de arquivos
+└── src/ # Código-fonte do frontend React
+  ├── pages/ # Páginas principais (Home, Cadastro, Produtos)
+  ├── components/ # Componentes reutilizáveis (Header, Footer)
+  ├── services/ # Consumo da API (axios)
+  ├── assets/ # Imagens e ícones
+  └── types/ # Tipagens TypeScript
+---
+
+## ▶️ Como Executar o Projeto
+
+### Pré-requisitos
+
+- Node.js (versão 18 ou superior)
+- Git instalado
+- Terminal (VS Code recomendado)
+
+---
+
+### 1. Clone o repositório
+
+```bash
+git clone https://github.com/seu-usuario/bolos-do-jacquin.git
+cd bolos-do-jacquin
+
+2. Instale as dependências
+🔹 Frontend
+npm install
+
+🔸 API
+cd api
+npm install
+
+3. Inicie a API
+cd api
+npm start
+
+A API estará disponível em: http://localhost:3000
+Documentação Swagger: http://localhost:3000/docs
+
+4. Inicie o Frontend
+Em outro terminal, na raiz do projeto:
+
+npm run dev
+
+A aplicação React estará em: http://localhost:5173
+
+✨ Funcionalidades
+
+📋 Listagem de produtos (bolos)
+
+➕ Cadastro de novos produtos
+
+🖼️ Upload de imagem para cada produto
+
+🔄 Integração com API simulada (json-server)
+
+📑 Documentação da API via Swagger
+
+📌 Dicas para Alunos
+
+Use este projeto como modelo base para criar o seu próprio.
+
+Explore os arquivos dentro de src/pages e src/services para entender como as páginas se comunicam com a API.
+
+Personalize com seus próprios produtos, imagens e estilos!
+
+👨‍🏫 Créditos
+
+Projeto desenvolvido como parte do conteúdo didático do curso CO>DE VW/Pe. Léo.
