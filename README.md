@@ -39,7 +39,7 @@ Este projeto serve como base para que os alunos possam:
 ---
 
 ## 📁 Estrutura do Projeto
-```
+```bash
 .
 ├── api/ # API fake com upload de arquivos
 └── src/ # Código-fonte do frontend React
@@ -64,8 +64,8 @@ Este projeto serve como base para que os alunos possam:
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/bolos-do-jacquin.git
-cd bolos-do-jacquin
+git clone https://github.com/s-f22/bolos-do-jacquin-react.git
+cd bolos-do-jacquin-react
 
 2. Instale as dependências
 🔹 Frontend
