@@ -39,6 +39,7 @@ Este projeto serve como base para que os alunos possam:
 ---
 
 ## 📁 Estrutura do Projeto
+```
 .
 ├── api/ # API fake com upload de arquivos
 └── src/ # Código-fonte do frontend React
@@ -47,6 +48,7 @@ Este projeto serve como base para que os alunos possam:
   ├── services/ # Consumo da API (axios)
   ├── assets/ # Imagens e ícones
   └── types/ # Tipagens TypeScript
+```
 ---
 
 ## ▶️ Como Executar o Projeto
