@@ -6,13 +6,14 @@ import { deleteBolo, enviarFoto, getBolos, postBolo } from "../../services/bolos
 import type { Bolo } from "../../types/Bolo";
 import { formatosService } from "../../services/formatosService";
 import { Modal } from "react-bootstrap";
+import ModalCustom from "../../components/ModalCustom";
 
 export default function Cadastro() {
 
   const [nomeBolo, setNomeBolo] = useState<string>("");
   const [categorias, setCategorias] = useState<string>("");
   const [imagem, setImagem] = useState<File | undefined>(undefined);
-  const [preco, setPreco] = useState<number>();
+  const [preco, setPreco] = useState<number | undefined>();
   const [peso, setPeso] = useState<number | undefined>();
   const [descricao, setDescricao] = useState<string>("");
   const [bgImageInputColor, setBgImageInputColor] = useState<string>("#ffffff");
@@ -20,6 +21,17 @@ export default function Cadastro() {
   const [mostrarModalDelete, setMostrarModalDelete] = useState<boolean>(false);
   const [mostrarModalSucesso, setMostrarModalSucesso] = useState(false);
   const [idDelete, setIdDelete] = useState<string>("");
+  const [modalMensagem, setModalMensagem] = useState<{ show: boolean; title: string; body: string; }>({ show: false, title: "", body: "" });
+
+  const exibirModalMensagem = (title: string, body: string) => {
+    setModalMensagem({ show: true, title, body });
+  };
+
+  const fecharModalMensagem = () => {
+    setModalMensagem({ ...modalMensagem, show: false });
+  };
+
+
 
   const abrirModalDelete = (id: string) => {
     setMostrarModalDelete(true);
@@ -52,7 +64,7 @@ export default function Cadastro() {
       await fetchBolos();
       fecharModalDelete();
     } catch (error) {
-      alert("Erro ao deletar o bolo.");
+      exibirModalMensagem("Erro", "Erro ao deletar o bolo.");
     }
   }
   const extrairImagem = (img: ChangeEvent<HTMLInputElement>) => {
@@ -79,7 +91,7 @@ export default function Cadastro() {
     if (imagem) {
       uploadedFileName = await enviarFoto(imagem);
       if (!uploadedFileName) {
-        alert("Cadastro cancelado por falha no upload da imagem.");
+        exibirModalMensagem("Erro", "Cadastro cancelado por falha no upload da imagem.");
         return;
       }
     }
@@ -96,7 +108,7 @@ export default function Cadastro() {
 
     try {
       await postBolo(novoBolo);
-      alert("Novo bolo cadastrado com sucesso!");
+      exibirModalMensagem("Sucesso", "Novo bolo cadastrado com sucesso!");
       limparDados();
       fetchBolos();
     } catch {
@@ -236,37 +248,30 @@ export default function Cadastro() {
       </main>
       <Footer />
 
-      <Modal style={{ fontFamily: "Bellota, system-ui" }} show={mostrarModalDelete} onHide={fecharModalDelete}>
-        <Modal.Header>
-          <Modal.Title >Confirmar exclusão</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          Tem certeza que deseja remover o bolo? Esta ação não poderá ser revertida.
-        </Modal.Body>
-        <Modal.Footer>
-          <button onClick={fecharModalDelete} className="botaoModalCancelar">Cancelar</button>
-          <button onClick={() => removeItem(idDelete)} className="botaoSubmit">Excluir</button>
-        </Modal.Footer>
-      </Modal>
+      <ModalCustom
+        show={mostrarModalDelete}
+        onClose={fecharModalDelete}
+        title="Confirmar exclusão"
+        body="Tem certeza que deseja remover o bolo? Esta ação não poderá ser revertida."
+        confirmText="Excluir"
+        cancelText="Cancelar"
+        showConfirmButton={true}
+        onConfirm={() => removeItem(idDelete)}
+      />
 
-      <Modal
-        style={{ fontFamily: "Bellota, system-ui" }}
+      <ModalCustom
         show={mostrarModalSucesso}
-        onHide={() => setMostrarModalSucesso(false)}
-        centered
-      >
-        <Modal.Header>
-          <Modal.Title>Sucesso</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          Bolo removido com sucesso!
-        </Modal.Body>
-        <Modal.Footer>
-          <button onClick={() => setMostrarModalSucesso(false)} className="botaoSubmit">
-            OK
-          </button>
-        </Modal.Footer>
-      </Modal>
+        onClose={() => setMostrarModalSucesso(false)}
+        title="Sucesso"
+        body="Bolo removido com sucesso!"
+      />
+
+      <ModalCustom
+        show={modalMensagem.show}
+        onClose={fecharModalMensagem}
+        title={modalMensagem.title}
+        body={modalMensagem.body}
+      />
 
     </>
   )

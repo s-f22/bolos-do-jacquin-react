@@ -40,7 +40,6 @@ export const enviarFoto = async (file: File): Promise<string | undefined> => {
     return res.data.filename;
   } catch (error) {
     console.error("Erro no upload da imagem: ", error);
-    alert("Erro ao realizar o upload da imagem");
-    return undefined;
+    return undefined; // deixa o componente tratar o erro
   }
 };
