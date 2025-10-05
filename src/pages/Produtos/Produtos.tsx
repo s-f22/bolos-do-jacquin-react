@@ -22,12 +22,16 @@ export default function Produtos() {
     try {
       const data = await getBolos();
       if (categoria) {
-        const filtrados = data.filter(b => b.categorias.includes(categoria));
+        const filtrados = data.filter(b =>
+          b.categorias.some(cat => cat.toLowerCase() === categoria.toLowerCase())
+        ); // Quero manter no resultado apenas os bolos que têm pelo menos uma categoria igual (ou semelhante) ao termo pesquisado. some(...): vai olhar dentro de cada b.categorias (que é um array de strings), vai retornar true se pelo menos uma das categorias corresponder ao termo pesquisado; filter(...): vai incluir o bolo (b) no resultado se o some(...) retornar true. Ou seja, adiciona ao array final de bolos apenas os que "passam no teste"
         setBolos(filtrados);
-      } else if (query) {
+      }
+      else if (query) {
         const filtrados = data.filter(b =>
           b.nome.toLowerCase().includes(query.toLowerCase()) ||
-          b.descricao.toLowerCase().includes(query.toLowerCase())
+          b.descricao.toLowerCase().includes(query.toLowerCase()) ||
+          b.categorias.some(cat => cat.toLowerCase().includes(query.toLowerCase()))
         );
         setBolos(filtrados);
       } else {
@@ -80,7 +84,7 @@ export default function Produtos() {
             }
             {
               bolos.length == 0 &&
-              <div className='jacquin404' ><h3>O termo pesquisado<br/> não foi encontrado</h3>
+              <div className='jacquin404' ><h3>O termo pesquisado<br /> não foi encontrado</h3>
                 <img src={jacquin404} alt="" />
               </div>
             }

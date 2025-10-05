@@ -6,6 +6,7 @@ import { deleteBolo, enviarFoto, getBolos, postBolo } from "../../services/bolos
 import type { Bolo } from "../../types/Bolo";
 import { formatosService } from "../../services/formatosService";
 import ModalCustomizado from "../../components/ModalCustomizado/ModalCustomizado";
+import { NumericFormat } from 'react-number-format';
 
 export default function Cadastro() {
 
@@ -104,7 +105,7 @@ export default function Cadastro() {
       nome: nomeBolo,
       descricao: descricao,
       preco: preco,
-      peso: peso ?? undefined,
+      peso: peso ?? undefined, // Nullish Coalescing Operator => retorna o valor da esquerda se esse valor não for null nem undefined. Se for null ou undefined, retorna o valor da direita.
       categorias: categorias.toLowerCase().split(",").map(c => c.trim()),
       imagens: uploadedFileName ? [uploadedFileName] : []
     };
@@ -149,7 +150,7 @@ export default function Cadastro() {
                   <input
                     id="categoria"
                     type="text"
-                    placeholder="Chocolate, Morango, Coco, Cerimonias, Destaque"
+                    placeholder="Chocolate, Morango, Coco..."
                     value={categorias}
                     onChange={c => setCategorias(c.target.value)}
                   />
@@ -177,23 +178,40 @@ export default function Cadastro() {
               <div className="linha_val_peso">
                 <div className="campo campo_valor">
                   <label htmlFor="valor">Valor</label>
-                  <input
+                  <NumericFormat
                     id="valor"
-                    type="number"
-                    placeholder="Digite o preço em R$ / kg"
+                    placeholder="Insira o preço (R$)"
                     value={preco}
-                    onChange={p => setPreco(Number(p.target.value))}
+                    thousandSeparator="."
+                    decimalSeparator=","
+                    prefix="R$ "
+                    decimalScale={2}
+                    fixedDecimalScale
+                    allowNegative={false}
+                    onValueChange={(values) => {
+                      setPreco(values.floatValue ?? 0); // armazena como número, se null ou undefined
+                    }}
+                    inputMode="decimal"
                   />
                 </div>
                 <div className="campo campo_peso">
                   <label htmlFor="peso">Peso</label>
-                  <input
+                  <NumericFormat
                     id="peso"
-                    type="number"
-                    placeholder="Qtde disponível (em g)"
-                    value={Number(peso)}
-                    onChange={p => setPeso(Number(p.target.value))}
+                    placeholder="em kg"
+                    value={peso}
+                    thousandSeparator="."
+                    decimalSeparator=","
+                    decimalScale={3}
+                    fixedDecimalScale
+                    allowNegative={false}
+                    suffix=" kg"
+                    onValueChange={(values) => {
+                      setPeso(values.floatValue ?? 0);
+                    }}
+                    inputMode="decimal"
                   />
+
                 </div>
               </div>
             </div>
@@ -202,7 +220,7 @@ export default function Cadastro() {
               <textarea
                 id="descricao"
                 maxLength={200}
-                placeholder="Insira breves informações sobre o bolo"
+                placeholder="Escreva detalhes sobre o bolo"
                 value={descricao}
                 onChange={d => setDescricao(d.target.value)}
               />
@@ -234,7 +252,7 @@ export default function Cadastro() {
                     <td data-cell="Categorias">{b.categorias.map(c => c.charAt(0).toUpperCase() + c.slice(1)).join(", ")}</td>
                     <td data-cell="Descrição">{b.descricao}</td>
                     <td data-cell="Preço">{formatosService.PrecoBR(b.preco)}</td>
-                    <td data-cell="Peso">{b.peso ? formatosService.PesoEmGramas(b.peso) : "Não cadastrado"}</td>
+                    <td data-cell="Peso">{b.peso ? formatosService.PesoEmKg(b.peso) : "Não cadastrado"}</td>
                     <td>
                       <svg onClick={() => abrirModalDelete(b.id!)} xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 640 640">
@@ -266,7 +284,7 @@ export default function Cadastro() {
         mostrar={estadoModalBoloRemovido}
         aoFechar={() => setEstadoModalBoloRemovido(false)}
         titulo="Sucesso"
-        corpo="Bolo removido com sucesso!"
+        corpo="Bolo removido!"
       />
 
       <ModalCustomizado

@@ -1,6 +1,6 @@
 .botaoModalCancelar {
     padding: 10px 10px;
-    margin-top: 50px;
+    /* margin-top: 50px; */
     border-radius: 10px;
     background-color: var(--corBackground);
     font-size: 24px;

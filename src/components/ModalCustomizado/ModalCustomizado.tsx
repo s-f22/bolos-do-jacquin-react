@@ -1,6 +1,6 @@
 import { Modal } from "react-bootstrap";
 import type { ModalCustomizadoProps } from "../../types/ModalCustomizadoProps";
-
+import './ModalCustomizado.css';
 
 export default function ModalCustomizado({
   mostrar,
