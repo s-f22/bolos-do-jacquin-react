@@ -181,7 +181,7 @@ export default function Cadastro() {
                   <NumericFormat
                     id="valor"
                     placeholder="Insira o preço (R$)"
-                    value={preco}
+                    value={preco ?? ""}
                     thousandSeparator="."
                     decimalSeparator=","
                     prefix="R$ "
@@ -189,7 +189,7 @@ export default function Cadastro() {
                     fixedDecimalScale
                     allowNegative={false}
                     onValueChange={(values) => {
-                      setPreco(values.floatValue ?? 0); // armazena como número, se null ou undefined
+                      setPreco(values.floatValue ?? undefined); // armazena como número, se null ou undefined
                     }}
                     inputMode="decimal"
                   />
@@ -198,8 +198,8 @@ export default function Cadastro() {
                   <label htmlFor="peso">Peso</label>
                   <NumericFormat
                     id="peso"
-                    placeholder="em kg"
-                    value={peso}
+                    placeholder="Inserir"
+                    value={peso ?? ""}
                     thousandSeparator="."
                     decimalSeparator=","
                     decimalScale={3}
@@ -207,7 +207,7 @@ export default function Cadastro() {
                     allowNegative={false}
                     suffix=" kg"
                     onValueChange={(values) => {
-                      setPeso(values.floatValue ?? 0);
+                      setPeso(values.floatValue ?? undefined);
                     }}
                     inputMode="decimal"
                   />
@@ -250,7 +250,7 @@ export default function Cadastro() {
                   <tr id={b.id}>
                     <td data-cell="Bolo">{b.nome}</td>
                     <td data-cell="Categorias">{b.categorias.map(c => c.charAt(0).toUpperCase() + c.slice(1)).join(", ")}</td>
-                    <td data-cell="Descrição">{b.descricao}</td>
+                    <td data-cell="Descrição">{b.descricao || "Não informada"}</td>
                     <td data-cell="Preço">{formatosService.PrecoBR(b.preco)}</td>
                     <td data-cell="Peso">{b.peso ? formatosService.PesoEmKg(b.peso) : "Não cadastrado"}</td>
                     <td>
