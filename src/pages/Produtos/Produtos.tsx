@@ -22,6 +22,7 @@ export default function Produtos() {
     try {
       const data = await getBolos();
       if (categoria) {
+        // const filtrados = data.filter(b => b.categorias.includes(categoria)); // Funcionaria, considerando apenas que includes() é caseSensitive. Ou seja, a logica abaixo, com some() é mais robusta, por ser caseInsensitive
         const filtrados = data.filter(b =>
           b.categorias.some(cat => cat.toLowerCase() === categoria.toLowerCase())
         ); // Quero manter no resultado apenas os bolos que têm pelo menos uma categoria igual (ou semelhante) ao termo pesquisado. some(...): vai olhar dentro de cada b.categorias (que é um array de strings), vai retornar true se pelo menos uma das categorias corresponder ao termo pesquisado; filter(...): vai incluir o bolo (b) no resultado se o some(...) retornar true. Ou seja, adiciona ao array final de bolos apenas os que "passam no teste"
