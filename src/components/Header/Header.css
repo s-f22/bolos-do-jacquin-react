@@ -24,6 +24,7 @@ header {
 
 .logo_header {
     height: 60px;
+    cursor: pointer;
 }
 
 .busca {

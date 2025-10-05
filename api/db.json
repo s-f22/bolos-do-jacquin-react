@@ -1,4 +1,10 @@
 {
+  "users": [
+    {
+      "email": "jacquin@bolos.com",
+      "senha": "1234"
+    }
+  ],
   "bolos": [
     {
       "nome": "Chocolate Belga",
