@@ -30,7 +30,7 @@ function Login() {
 
   return (
     <section className="d-flex justify-content-center align-items-center min-vh-100">
-      <div className="card p-4 shadow-sm w-100" style={{ maxWidth: "400px" }}>
+      <div className="card p-4 shadow-sm w-100">
         <h3 className="text-center mb-4">Login</h3>
         {error && <div className="alert alert-danger">{error}</div>}
         <form onSubmit={handleLogin}>
