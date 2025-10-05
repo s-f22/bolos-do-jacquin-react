@@ -1,3 +1,7 @@
+main{
+    font-family: "Bellota", system-ui;
+}
+
 /* BANNER */
 .banner {
     background-image: url(../../assets/imgs/Banner.png);
@@ -17,11 +21,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 100px 0;
+    margin: 2rem 0;
 }
 
 .titulo span {
     font-size: 48px;
+    text-align: center;
 }
 
 .titulo hr {
@@ -39,11 +44,11 @@
     justify-content: center;
 }
 
-.card {
+.cardProduto {
     display: flex;
     flex-direction: column;
     width: 350px;
-    height: 500px;
+    /* height: 500px; */
     background-color: var(--corFontClara);
     box-shadow: 0 4px 4px 2px #00000025;
     border-radius: 30px;
@@ -51,23 +56,23 @@
     margin-bottom: 100px;
 }
 
-.card img {
+.cardProduto img {
     width: 100%;
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
 }
 
-.card h2 {
+.cardProduto h2 {
     margin: 20px 0;
     font-size: 28px;
 }
 
-.card p {
+.cardProduto p {
     padding: 0 10px;
     font-size: 18px;
 }
 
-.card span {
+.cardProduto span {
     align-self: flex-end;
     padding: 0 20px;
     margin: 10px 0;
@@ -78,6 +83,17 @@
     flex-direction: column;
     height: 100%;
     justify-content: center;
+}
+
+.jacquin404{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px
+}
+
+.jacquin404 img{
+    height: 150px;
 }
 
 

@@ -5,8 +5,7 @@ import './Cadastro.css'
 import { deleteBolo, enviarFoto, getBolos, postBolo } from "../../services/bolosService";
 import type { Bolo } from "../../types/Bolo";
 import { formatosService } from "../../services/formatosService";
-import { Modal } from "react-bootstrap";
-import ModalCustom from "../../components/ModalCustom";
+import ModalCustomizado from "../../components/ModalCustomizado/ModalCustomizado";
 
 export default function Cadastro() {
 
@@ -18,28 +17,28 @@ export default function Cadastro() {
   const [descricao, setDescricao] = useState<string>("");
   const [bgImageInputColor, setBgImageInputColor] = useState<string>("#ffffff");
   const [bolos, setBolos] = useState<Bolo[]>([]);
-  const [mostrarModalDelete, setMostrarModalDelete] = useState<boolean>(false);
-  const [mostrarModalSucesso, setMostrarModalSucesso] = useState(false);
   const [idDelete, setIdDelete] = useState<string>("");
-  const [modalMensagem, setModalMensagem] = useState<{ show: boolean; title: string; body: string; }>({ show: false, title: "", body: "" });
+  const [mostrarModalDelete, setMostrarModalDelete] = useState<boolean>(false);
+  const [estadoModalBoloRemovido, setEstadoModalBoloRemovido] = useState<boolean>(false);
+  const [propsModalCustomizado, setPropsModalCustomizado] = useState<{ show: boolean; title: string; body: string; }>({ show: false, title: "", body: "" });
 
-  const exibirModalMensagem = (title: string, body: string) => {
-    setModalMensagem({ show: true, title, body });
+  const exibirModalCustomizado = (title: string, body: string) => {
+    setPropsModalCustomizado({ show: true, title, body });
   };
 
-  const fecharModalMensagem = () => {
-    setModalMensagem({ ...modalMensagem, show: false });
+  const fecharModalCustomizado = () => {
+    setPropsModalCustomizado({ ...propsModalCustomizado, show: false });
   };
-
-
 
   const abrirModalDelete = (id: string) => {
     setMostrarModalDelete(true);
     setIdDelete(id);
   }
+
   const fecharModalDelete = () => {
     setMostrarModalDelete(false);
   }
+
   const fetchBolos = async () => {
     try {
       const dados = await getBolos();
@@ -48,6 +47,7 @@ export default function Cadastro() {
       console.error("Erro ao executar getBolos: ", error);
     }
   }
+
   const limparDados = () => {
     setNomeBolo("");
     setCategorias("");
@@ -57,16 +57,18 @@ export default function Cadastro() {
     setDescricao("");
     setBgImageInputColor("#ffffff");
   }
+
   const removeItem = async (id: string) => {
     try {
       await deleteBolo(id);
-      setMostrarModalSucesso(true);
+      setEstadoModalBoloRemovido(true);
       await fetchBolos();
       fecharModalDelete();
     } catch (error) {
-      exibirModalMensagem("Erro", "Erro ao deletar o bolo.");
+      exibirModalCustomizado("Erro", "Erro ao deletar o bolo.");
     }
   }
+
   const extrairImagem = (img: ChangeEvent<HTMLInputElement>) => {
     const file = img.target.files?.[0];
     if (file?.type.includes("image")) {
@@ -78,11 +80,12 @@ export default function Cadastro() {
       setBgImageInputColor("#ff2c2c");
     }
   }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!nomeBolo || !categorias || !preco) {
-      alert("Preencha os campos: \nNome do bolo; categorias e preço");
+      exibirModalCustomizado("Campos obrigatórios", "Preencha o nome, categorias(s) e preço do bolo");
       return;
     }
 
@@ -91,7 +94,7 @@ export default function Cadastro() {
     if (imagem) {
       uploadedFileName = await enviarFoto(imagem);
       if (!uploadedFileName) {
-        exibirModalMensagem("Erro", "Cadastro cancelado por falha no upload da imagem.");
+        exibirModalCustomizado("Erro", "Cadastro cancelado por falha no upload da imagem.");
         return;
       }
     }
@@ -108,17 +111,17 @@ export default function Cadastro() {
 
     try {
       await postBolo(novoBolo);
-      exibirModalMensagem("Sucesso", "Novo bolo cadastrado com sucesso!");
+      exibirModalCustomizado("Sucesso", "Novo bolo cadastrado com sucesso!");
       limparDados();
       fetchBolos();
     } catch {
       alert("Erro ao cadastrar novo bolo.");
     }
   };
+
   useEffect(() => {
     fetchBolos();
   }, [])
-
 
   return (
     <>
@@ -128,7 +131,7 @@ export default function Cadastro() {
         <form onSubmit={handleSubmit}>
           <h2>Cadastro</h2>
           <hr />
-          <div className="container container_cadastro">
+          <div className="container_geral container_cadastro">
             <div className="cadastro_col1">
               <div className="campo campo_bolo">
                 <label htmlFor="bolo">Bolo</label>
@@ -248,29 +251,29 @@ export default function Cadastro() {
       </main>
       <Footer />
 
-      <ModalCustom
-        show={mostrarModalDelete}
-        onClose={fecharModalDelete}
-        title="Confirmar exclusão"
-        body="Tem certeza que deseja remover o bolo? Esta ação não poderá ser revertida."
-        confirmText="Excluir"
-        cancelText="Cancelar"
-        showConfirmButton={true}
-        onConfirm={() => removeItem(idDelete)}
+      <ModalCustomizado
+        mostrar={mostrarModalDelete}
+        aoFechar={fecharModalDelete}
+        titulo="Confirmar exclusão"
+        corpo="Tem certeza que deseja remover o bolo? Esta ação não poderá ser revertida."
+        textoBotaoConfirmacao="Excluir"
+        textoBotaoCancelamento="Cancelar"
+        estadoBotaoConfirmacao={true}
+        aoConfirmar={() => removeItem(idDelete)}
       />
 
-      <ModalCustom
-        show={mostrarModalSucesso}
-        onClose={() => setMostrarModalSucesso(false)}
-        title="Sucesso"
-        body="Bolo removido com sucesso!"
+      <ModalCustomizado
+        mostrar={estadoModalBoloRemovido}
+        aoFechar={() => setEstadoModalBoloRemovido(false)}
+        titulo="Sucesso"
+        corpo="Bolo removido com sucesso!"
       />
 
-      <ModalCustom
-        show={modalMensagem.show}
-        onClose={fecharModalMensagem}
-        title={modalMensagem.title}
-        body={modalMensagem.body}
+      <ModalCustomizado
+        mostrar={propsModalCustomizado.show}
+        aoFechar={fecharModalCustomizado}
+        titulo={propsModalCustomizado.title}
+        corpo={propsModalCustomizado.body}
       />
 
     </>

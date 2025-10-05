@@ -9,8 +9,8 @@ export default function Header() {
 
   const handleSearch = () => {
     if (!searchTerm.trim()) return; // ignora buscas vazias
-    console.log('Buscando por:', searchTerm);
-    navigate(`/produtos/pesquisa?query=${encodeURIComponent(searchTerm)}`);
+    // console.log('Buscando por:', searchTerm);
+    navigate(`/produtos/pesquisa?query=${encodeURIComponent(searchTerm)}`); //apenas executa o navigate concatenando a URL fica de pesquisa com o termo pesquisado
     setSearchTerm("");
   };
 
@@ -23,7 +23,7 @@ export default function Header() {
 
   return (
     <header>
-      <div className="container container_header">
+      <div className="container_geral container_header">
         <Link to={"/"}>
           <svg className="icone_home" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
             <path fill="currentColor"

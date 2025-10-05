@@ -148,34 +148,6 @@
       "id": "d7ty",
       "preco": 120,
       "peso": 2500
-    },
-    {
-      "nome": "Teste Bolo",
-      "descricao": "testando",
-      "preco": 58.99,
-      "peso": 1100,
-      "categorias": [
-        "vinho"
-      ],
-      "imagens": [
-        "1759422442462.png"
-      ],
-      "id": "pH40tcm"
-    },
-    {
-      "nome": "Novo bolin",
-      "descricao": "120 gramas de pura delicia",
-      "preco": 21.11,
-      "peso": 120,
-      "categorias": [
-        "teste",
-        "nova",
-        "chocolate"
-      ],
-      "imagens": [
-        "1759422707135.jpg"
-      ],
-      "id": "ogXI9W-"
     }
   ]
 }

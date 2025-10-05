@@ -1,0 +1,10 @@
+.botaoModalCancelar {
+    padding: 10px 10px;
+    margin-top: 50px;
+    border-radius: 10px;
+    background-color: var(--corBackground);
+    font-size: 24px;
+    font-family: var(--fontComplementar);
+    box-shadow: 0 4px 4px 0 #00000025;
+    cursor: pointer;
+}

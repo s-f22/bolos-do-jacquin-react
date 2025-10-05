@@ -1,6 +1,7 @@
-import Header from '../../components/Header/Header'
-import './Produtos.css'
+import Header from '../../components/Header/Header';
+import './Produtos.css';
 import whatsIcon from '../../assets/whatsapp.png';
+import jacquin404 from '../../assets/jacquin-not-found.png';
 import Footer from '../../components/Footer/Footer';
 import { useEffect, useState } from 'react';
 import type { Bolo } from '../../types/Bolo';
@@ -49,7 +50,7 @@ export default function Produtos() {
       <Header />
       <main>
         <section className="banner"></section>
-        <section className="container">
+        <section className="container_geral">
           <h1 className="acessivel">produtos de chocoltae</h1>
           <div className="titulo">
             <span>
@@ -67,7 +68,7 @@ export default function Produtos() {
           <div className="cards">
             {
               bolos.map((b: Bolo) => (
-                <div id={b.id} className="card">
+                <div id={b.id} className="cardProduto">
                   <img src={`http://localhost:3000/static/${b.imagens[0]}`} alt="" />
                   <div className='card_textos'>
                     <h2>{b.nome}</h2>
@@ -76,6 +77,12 @@ export default function Produtos() {
                   </div>
                 </div>
               ))
+            }
+            {
+              bolos.length == 0 &&
+              <div className='jacquin404' ><h3>O termo pesquisado<br/> não foi encontrado</h3>
+                <img src={jacquin404} alt="" />
+              </div>
             }
           </div>
         </section>
