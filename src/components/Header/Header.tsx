@@ -15,7 +15,7 @@ export default function Header() {
 
   const handleLogout = () => {
     Cookies.remove('auth_hash'); // Remove o cookie de autenticação; 
-    navigate('/login');
+    navigate('/');
     window.location.reload(); // Recarrega a página para forçar re-render (alternativo a um state global)
   };
 
@@ -60,7 +60,7 @@ export default function Header() {
         {
           isLoggedIn ? (
             <div className='botoes_direita'>
-              <Link to={"/cadastro"} title='Cadastrar novos bolos'>
+              <Link to={"/produtos/cadastro"} title='Cadastrar novos bolos'>
                 <svg className="add" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                   <path fill="currentColor" d="M240 48c0-8.8-7.2-16-16-16s-16 7.2-16 16l0 192-192 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l192 0 0 192c0 8.8 7.2 16 16 16s16-7.2 16-16l0-192 192 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-192 0 0-192z" />
                 </svg>
