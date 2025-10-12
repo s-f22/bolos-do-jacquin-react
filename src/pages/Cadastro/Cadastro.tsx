@@ -13,8 +13,8 @@ export default function Cadastro() {
   const [nomeBolo, setNomeBolo] = useState<string>("");
   const [categorias, setCategorias] = useState<string>("");
   const [imagem, setImagem] = useState<File | undefined>(undefined);
-  const [preco, setPreco] = useState<number | undefined>();
-  const [peso, setPeso] = useState<number | undefined>();
+  const [preco, setPreco] = useState<number | undefined>(undefined);
+  const [peso, setPeso] = useState<number | undefined>(undefined);
   const [descricao, setDescricao] = useState<string>("");
   const [bgImageInputColor, setBgImageInputColor] = useState<string>("#ffffff");
   const [bolos, setBolos] = useState<Bolo[]>([]);
@@ -278,6 +278,7 @@ export default function Cadastro() {
         textoBotaoCancelamento="Cancelar"
         estadoBotaoConfirmacao={true}
         aoConfirmar={() => removeItem(idDelete)}
+        estadoConteudoCentralizado={true}
       />
 
       <ModalCustomizado
@@ -292,6 +293,7 @@ export default function Cadastro() {
         aoFechar={fecharModalCustomizado}
         titulo={propsModalCustomizado.title}
         corpo={propsModalCustomizado.body}
+        estadoConteudoCentralizado={true}
       />
 
     </>

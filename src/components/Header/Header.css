@@ -4,6 +4,7 @@ header {
     height: 80px;
     display: flex;
 }
+
 .container_geral {
     width: 90%;
     max-width: 1440px;
@@ -45,4 +46,10 @@ header input {
     width: 100%;
     border-radius: 10px;
     padding-left: 40px;
+}
+
+.logout {
+    color: black;
+    cursor: pointer;
+    width: 40px;
 }

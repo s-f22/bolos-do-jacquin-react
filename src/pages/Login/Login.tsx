@@ -8,6 +8,11 @@ function Login() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  // Função simples para gerar "hash"
+  const generateFakeHash = (email: string) => {
+    return btoa(email + Date.now()); // base64 + timestamp
+  };
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -18,6 +23,11 @@ function Login() {
       const data = await response.json();
 
       if (data.length > 0) {
+        const fakeHash = generateFakeHash(email);
+        
+        // Salva o hash no cookie por 1 hora
+        document.cookie = `auth_hash=${fakeHash}; path=/; max-age=3600`;
+
         navigate("/cadastro");
       } else {
         setError("Email ou senha incorretos.");

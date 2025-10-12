@@ -7,11 +7,11 @@ export default function ModalCustomizado({
   aoFechar,
   titulo,
   corpo,
-  textoBotaoConfirmacao = "Confirmar",
-  textoBotaoCancelamento = "Cancelar",
+  textoBotaoConfirmacao,
+  textoBotaoCancelamento,
   aoConfirmar,
-  estadoBotaoConfirmacao = false,
-  estadoConteudoCentralizado = true }: ModalCustomizadoProps) {
+  estadoBotaoConfirmacao,
+  estadoConteudoCentralizado }: ModalCustomizadoProps) {
   return (
     <Modal
       style={{ fontFamily: "Bellota, system-ui" }}
