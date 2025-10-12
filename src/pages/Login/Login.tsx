@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Cookies from "js-cookie"; // caso surja erro, corrigir com quick-fix, ou: npm install --save-dev @types/js-cookie
 import './Login.css';
 
 function Login() {
@@ -7,11 +8,6 @@ function Login() {
   const [password, setPassword] = useState(""); 
   const [error, setError] = useState("");
   const navigate = useNavigate();
-
-  // Função simples para gerar "hash"
-  const generateFakeHash = (email: string) => {
-    return btoa(email + Date.now()); // base64 + timestamp
-  };
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,11 +19,9 @@ function Login() {
       const data = await response.json();
 
       if (data.length > 0) {
-        const fakeHash = generateFakeHash(email);
-        
-        // Salva o hash no cookie por 1 hora
-        document.cookie = `auth_hash=${fakeHash}; path=/; max-age=3600`;
+        const authHash = btoa(email + Date.now());
 
+        Cookies.set("auth_hash", authHash, { expires: 1 / 24 }); // 1 hora
         navigate("/cadastro");
       } else {
         setError("Email ou senha incorretos.");
@@ -42,7 +36,9 @@ function Login() {
     <section className="d-flex justify-content-center align-items-center min-vh-100">
       <div className="card p-4 shadow-sm w-100">
         <h3 className="text-center mb-4">Login</h3>
+
         {error && <div className="alert alert-danger">{error}</div>}
+
         <form onSubmit={handleLogin}>
           <div className="form-group mb-3">
             <label htmlFor="email">Email</label>
@@ -56,6 +52,7 @@ function Login() {
               required
             />
           </div>
+
           <div className="form-group mb-4">
             <label htmlFor="password">Senha</label>
             <input
@@ -68,6 +65,7 @@ function Login() {
               required
             />
           </div>
+
           <button type="submit" className="botaoSubmit w-100">
             Entrar
           </button>
