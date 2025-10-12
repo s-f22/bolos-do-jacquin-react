@@ -253,7 +253,7 @@ export default function Cadastro() {
                     <td data-cell="Descrição">{b.descricao || "Não informada"}</td>
                     <td data-cell="Preço">{formatosService.PrecoBR(b.preco)}</td>
                     <td data-cell="Peso">{b.peso ? formatosService.PesoEmKg(b.peso) : "Não cadastrado"}</td>
-                    <td>
+                    <td title="Excluir bolo">
                       <svg onClick={() => abrirModalDelete(b.id!)} xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 640 640">
                         <path fill="currentColor"

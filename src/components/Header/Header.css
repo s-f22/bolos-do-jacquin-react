@@ -48,8 +48,21 @@ header input {
     padding-left: 40px;
 }
 
+.botoes_direita{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.add {
+    color: #000000;
+    cursor: pointer;
+    width: 25px;
+}
+
 .logout {
-    color: black;
+    color: #000000;
     cursor: pointer;
     width: 40px;
+    background-color: var(--corPrincipal);
 }

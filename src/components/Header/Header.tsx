@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import './Header.css';
 import { useMemo, useState } from 'react';
+// useMemo => O `useMemo` é usado aqui para calcular o valor de `isLoggedIn` uma única vez na montagem do componente, evitando recalcular a presença do cookie `'auth_hash'` em renderizações subsequentes, o que melhora a eficiência de renderização. Como o valor de `isLoggedIn` não depende de mudanças dentro do componente e não precisa ser reativo, o uso de `useMemo` evita cálculos desnecessários, ao contrário do `useState`, que exigiria uma re-renderização a cada alteração de estado, mesmo que o valor de `isLoggedIn` não mudasse.
 import Cookies from 'js-cookie'; // caso surja erro, corrigir com quick-fix, ou: npm install --save-dev @types/js-cookie
 
 export default function Header() {
@@ -36,7 +37,7 @@ export default function Header() {
   return (
     <header>
       <div className="container_geral container_header">
-        <Link to={"/"}>
+        <Link to={"/"} title='Ir para a página inicial'>
           <svg className="icone_home" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
             <path fill="currentColor"
               d="M320 80C452.5 80 560 187.5 560 320C560 452.5 452.5 560 320 560C187.5 560 80 452.5 80 320C80 187.5 187.5 80 320 80zM320 576C461.4 576 576 461.4 576 320C576 178.6 461.4 64 320 64C178.6 64 64 178.6 64 320C64 461.4 178.6 576 320 576zM296 360C296 355.6 299.6 352 304 352L336 352C340.4 352 344 355.6 344 360L344 432L296 432L296 360zM280 432L256 432C238.3 432 224 417.7 224 400L224 281.4L320 202.3L416 281.4L416 400C416 417.7 401.7 432 384 432L360 432L360 360C360 346.7 349.3 336 336 336L304 336C290.7 336 280 346.7 280 360L280 432zM208 294.6L208 400C208 426.5 229.5 448 256 448L384 448C410.5 448 432 426.5 432 400L432 294.6L450.9 310.2C454.3 313 459.4 312.5 462.2 309.1C465 305.7 464.5 300.6 461.1 297.8L325.1 185.8C322.1 183.4 317.9 183.4 314.9 185.8L178.9 297.8C175.5 300.6 175 305.7 177.8 309.1C180.6 312.5 185.7 313 189.1 310.2L208 294.6z" />
@@ -58,13 +59,20 @@ export default function Header() {
         </div>
         {
           isLoggedIn ? (
-
-            <svg onClick={handleLogout} className="logout" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-              <path fill="black" d="M18.3 261.7c-3.1-3.1-3.1-8.2 0-11.3l144-144c2.3-2.3 5.7-3 8.7-1.7l0 0c3 1.2 4.9 4.2 4.9 7.4l0 88c0 4.4 3.6 8 8 8l120 0c17.7 0 32 14.3 32 32l0 32c0 17.7-14.3 32-32 32l-120 0c-4.4 0-8 3.6-8 8l0 88c0 3.2-1.9 6.2-4.9 7.4s-6.4 .6-8.7-1.7l-144-144zM151 95L7 239c-9.4 9.4-9.4 24.6 0 33.9l0 0 144 144c6.9 6.9 17.2 8.9 26.2 5.2S192 409.7 192 400l0-80 112 0c26.5 0 48-21.5 48-48l0-32c0-26.5-21.5-48-48-48l-112 0 0-80c0-9.7-5.8-18.5-14.8-22.2S157.9 88.2 151 95zM328 464c-4.4 0-8 3.6-8 8s3.6 8 8 8l88 0c53 0 96-43 96-96l0-256c0-53-43-96-96-96l-88 0c-4.4 0-8 3.6-8 8s3.6 8 8 8l88 0c44.2 0 80 35.8 80 80l0 256c0 44.2-35.8 80-80 80l-88 0z" />
-            </svg>
-
+            <div className='botoes_direita'>
+              <Link to={"/cadastro"} title='Cadastrar novos bolos'>
+                <svg className="add" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                  <path fill="currentColor" d="M240 48c0-8.8-7.2-16-16-16s-16 7.2-16 16l0 192-192 0c-8.8 0-16 7.2-16 16s7.2 16 16 16l192 0 0 192c0 8.8 7.2 16 16 16s16-7.2 16-16l0-192 192 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-192 0 0-192z" />
+                </svg>
+              </Link>
+              <button onClick={handleLogout} title='Sair / Finalizar sessão'>
+                <svg className="logout" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path fill="currentColor" d="M18.3 261.7c-3.1-3.1-3.1-8.2 0-11.3l144-144c2.3-2.3 5.7-3 8.7-1.7l0 0c3 1.2 4.9 4.2 4.9 7.4l0 88c0 4.4 3.6 8 8 8l120 0c17.7 0 32 14.3 32 32l0 32c0 17.7-14.3 32-32 32l-120 0c-4.4 0-8 3.6-8 8l0 88c0 3.2-1.9 6.2-4.9 7.4s-6.4 .6-8.7-1.7l-144-144zM151 95L7 239c-9.4 9.4-9.4 24.6 0 33.9l0 0 144 144c6.9 6.9 17.2 8.9 26.2 5.2S192 409.7 192 400l0-80 112 0c26.5 0 48-21.5 48-48l0-32c0-26.5-21.5-48-48-48l-112 0 0-80c0-9.7-5.8-18.5-14.8-22.2S157.9 88.2 151 95zM328 464c-4.4 0-8 3.6-8 8s3.6 8 8 8l88 0c53 0 96-43 96-96l0-256c0-53-43-96-96-96l-88 0c-4.4 0-8 3.6-8 8s3.6 8 8 8l88 0c44.2 0 80 35.8 80 80l0 256c0 44.2-35.8 80-80 80l-88 0z" />
+                </svg>
+              </button>
+            </div>
           ) : (
-            <Link to={"/login"}>
+            <Link to={"/login"} title='Fazer login'>
               <svg className="logo_header" viewBox="0 0 277 125" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g filter="url(#filter0_d_2_41)">
                   <path
@@ -88,7 +96,6 @@ export default function Header() {
             </Link>
           )
         }
-
       </div>
     </header>
   )
