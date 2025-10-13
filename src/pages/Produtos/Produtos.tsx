@@ -6,8 +6,8 @@ import Footer from '../../components/Footer/Footer';
 import { useEffect, useState } from 'react';
 import type { Bolo } from '../../types/Bolo';
 import { getBolos } from '../../services/bolosService';
-import { formatosService } from '../../services/formatosService';
 import { useLocation, useParams } from 'react-router-dom';
+import CardProduto from '../../components/CardProduto/CardProduto';
 
 export default function Produtos() {
 
@@ -73,14 +73,13 @@ export default function Produtos() {
           <div className="cards">
             {
               bolos.map((b: Bolo) => (
-                <div id={b.id} className="cardProduto">
-                  <img src={`http://localhost:3000/static/${b.imagens[0]}`} alt="" />
-                  <div className='card_textos'>
-                    <h2>{b.nome}</h2>
-                    <p>{b.descricao}</p>
-                    <span>{formatosService.PrecoBR(b.preco)}</span>
-                  </div>
-                </div>
+                <CardProduto
+                  key={b.id}
+                  nome={b.nome}
+                  descricao={b.descricao}
+                  preco={b.preco} 
+                  imagem={b.imagens[0]}
+                />
               ))
             }
             {
